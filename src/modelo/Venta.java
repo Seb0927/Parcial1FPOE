@@ -10,21 +10,21 @@ package modelo;
  */
 public class Venta {
     int anio;
-    double cantidadVentas;
+    double ventas;
     double diferencia;
     double variacion;
     
     //Constructores
     public Venta(int anio, double cantidadVentas) {
         this.anio = anio;
-        this.cantidadVentas = cantidadVentas;
+        this.ventas = cantidadVentas;
         this.diferencia = 0;
         this.variacion = 0;
     }
 
     public Venta(int anio, double cantidadVentas, double diferencia, double porcentajeVariacion) {
         this.anio = anio;
-        this.cantidadVentas = cantidadVentas;
+        this.ventas = cantidadVentas;
         this.diferencia = diferencia;
         this.variacion = porcentajeVariacion;
     }
@@ -38,12 +38,12 @@ public class Venta {
         this.anio = anio;
     }
 
-    public double getCantidadVentas() {
-        return cantidadVentas;
+    public double getVentas() {
+        return ventas;
     }
 
-    public void setCantidadVentas(double cantidadVentas) {
-        this.cantidadVentas = cantidadVentas;
+    public void setVentas(double ventas) {
+        this.ventas = ventas;
     }
 
     public double getDiferencia() {

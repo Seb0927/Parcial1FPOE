@@ -21,9 +21,50 @@ public class pronosticoVentasModel {
         
     }
     
-    //Métodos propios
-    void agregarVenta(){
+    //Métodos propios (PUBLICOS)
+    /**
+     * Agrega una venta correspondiente a "historicoVentas"
+     * @param venta Venta correspondiente
+     */
+    public void agregarVenta(double venta){
+        //Calculamos el año a ingresar a la cantidad de ventas
+        int anio = historicoVentas.size();
         
+        /*
+        Si "historicoVentas" se encuentra vacío, añadiremos la primera venta sin "diferencia" y "variacion"
+        Sino, se debe añadir con "diferencia" y "variacion"
+        */
+        if (historicoVentas.isEmpty()){
+            Venta v = new Venta(anio, venta);
+            historicoVentas.add(v);
+        } else {
+            Venta v = new Venta(anio, venta);
+            historicoVentas.add(v);
+            setDiferencia();
+            setVariacion();
+        }
+    }
+    
+    //Métodos propios (PRIVADOS)
+    /**
+     *Establece la diferencia (Resta) entre la última venta y su anterior en la última venta
+     */
+    private void setDiferencia(){
+        //Obtiene la diferencia entre la última venta, con la penúltima venta
+        double diferencia = historicoVentas.get(historicoVentas.size() - 1).getVentas() - historicoVentas.get(historicoVentas.size() - 2).getVentas();
+        //Establece la diferencia en la última venta
+        historicoVentas.get(historicoVentas.size() - 1).setDiferencia(diferencia);
+    }
+    
+    /**
+     * Establece la varianza entre la última venta y su anterior en la última venta 
+     */
+    private void setVariacion(){
+        //Obtiene "diferencia" del útlimo elemento de "historicoVentas"
+        double diferencia = historicoVentas.get(historicoVentas.size() - 1).getDiferencia();
+        //Establece la variacion en la última venta
+        double variacion = diferencia/historicoVentas.get(historicoVentas.size() -2).getVentas();
+        historicoVentas.get(historicoVentas.size() - 1).setVariacion(variacion);
     }
     
     
