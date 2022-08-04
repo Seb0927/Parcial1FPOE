@@ -45,6 +45,20 @@ public class pronosticoVentasModel {
         }
     }
     
+    public void eliminarVenta(double indice){
+        
+    }
+    
+    /**
+     * Modifica una determinada venta
+     * @param indice índice del elemento "venta" en "historialVentas"
+     * @param ventas valor a cambiar
+     */
+    public void modificarVenta(int indice, double ventas){
+        //Establece la nueva venta
+        historicoVentas.get(indice).setVentas(ventas);
+    }
+    
     //Métodos propios (PRIVADOS)
     /**
      *Establece la diferencia (Resta) entre la última venta y su anterior en la última venta
