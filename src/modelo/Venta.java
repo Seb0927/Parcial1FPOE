@@ -12,19 +12,21 @@ public class Venta {
     int anio;
     double cantidadVentas;
     double diferencia;
-    double porcentajeVariacion;
+    double variacion;
     
     //Constructores
     public Venta(int anio, double cantidadVentas) {
         this.anio = anio;
         this.cantidadVentas = cantidadVentas;
+        this.diferencia = 0;
+        this.variacion = 0;
     }
 
     public Venta(int anio, double cantidadVentas, double diferencia, double porcentajeVariacion) {
         this.anio = anio;
         this.cantidadVentas = cantidadVentas;
         this.diferencia = diferencia;
-        this.porcentajeVariacion = porcentajeVariacion;
+        this.variacion = porcentajeVariacion;
     }
     
     //Getter's & Setter's
@@ -52,12 +54,12 @@ public class Venta {
         this.diferencia = diferencia;
     }
 
-    public double getPorcentajeVariacion() {
-        return porcentajeVariacion;
+    public double getVariacion() {
+        return variacion;
     }
 
-    public void setPorcentajeVariacion(double porcentajeVariacion) {
-        this.porcentajeVariacion = porcentajeVariacion;
+    public void setVariacion(double variacion) {
+        this.variacion = variacion;
     }
     
     
