@@ -64,6 +64,13 @@ public class pronosticoVentasModel {
         historicoVentas.get(indice).setVentas(ventas);
     }
     
+    public void nuevoPronostico(){
+        historicoVentas.removeAll(historicoVentas);
+        pronosticoVentas.removeAll(pronosticoVentas);
+        aniosPronosticados = 0;
+        promedioVariacion = 0;
+    }
+    
     //Métodos propios (PRIVADOS)
     /**
      *Establece la diferencia (Resta) entre la última venta y su anterior en la última venta
