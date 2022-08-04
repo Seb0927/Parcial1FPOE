@@ -60,15 +60,39 @@ public class pronosticoVentasModel {
      * @param ventas valor a cambiar
      */
     public void modificarVenta(int indice, double ventas){
-        //Establece la nueva venta
         historicoVentas.get(indice).setVentas(ventas);
     }
     
+    /**
+     * Remueve todos los elementos de "historicoVentas" y "pronosticoVentas"
+     * Además aniosPronosticados y promedioVariacion son establecidos en 0
+     */
     public void nuevoPronostico(){
         historicoVentas.removeAll(historicoVentas);
         pronosticoVentas.removeAll(pronosticoVentas);
         aniosPronosticados = 0;
         promedioVariacion = 0;
+    }
+    
+    public void calcularPronosticoVentas(){
+        //Realizamos el pronostico de ventas en baso a los años pronosticados
+        for (int i = 1; i <= aniosPronosticados; i++){
+            //Si "pronosticoVentas" se encuentra vacío, hacer el primer pronóstico
+            //del año en base del último item de "historicoVentas".
+            //Sino, hacerlo en base al último item de "pronosticoVentas"
+            if (pronosticoVentas.isEmpty()){
+                double prVenta = historicoVentas.get(historicoVentas.size() - 1).getVentas();
+                prVenta += promedioVariacion*prVenta;
+                Venta v = new Venta(i+aniosPronosticados, prVenta);
+                pronosticoVentas.add(v);
+            } else {
+                double prVenta = pronosticoVentas.get(pronosticoVentas.size() - 1).getVentas();
+                prVenta += promedioVariacion*prVenta;
+                Venta v = new Venta(i+aniosPronosticados, prVenta);
+                pronosticoVentas.add(v);
+            }
+             
+        }
     }
     
     //Métodos propios (PRIVADOS)
