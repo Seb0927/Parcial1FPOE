@@ -45,8 +45,13 @@ public class pronosticoVentasModel {
         }
     }
     
+    /**
+     * Elimina una determinada venta
+     * @param indice indice del elemento "venta" a eliminar de "historialVentas"
+     */
     public void eliminarVenta(double indice){
-        
+        //Elimina la venta indicada
+        historicoVentas.remove(indice);
     }
     
     /**
