@@ -65,7 +65,7 @@ public class pronosticoVentasModel {
     
     /**
      * Remueve todos los elementos de "historicoVentas" y "pronosticoVentas"
-     * Además aniosPronosticados y promedioVariacion son establecidos en 0
+     * Además aniosPronosticados y promedioVariacion son establecidos en 0.
      */
     public void nuevoPronostico(){
         historicoVentas.removeAll(historicoVentas);
@@ -74,6 +74,10 @@ public class pronosticoVentasModel {
         promedioVariacion = 0;
     }
     
+    /**
+     * Calcula "pronosticoVentas" y añade las respectivas ventas[Solo con año y venta]
+     * a si misma.
+     */
     public void calcularPronosticoVentas(){
         //Realizamos el pronostico de ventas en baso a los años pronosticados
         for (int i = 1; i <= aniosPronosticados; i++){
@@ -97,7 +101,7 @@ public class pronosticoVentasModel {
     
     //Métodos propios (PRIVADOS)
     /**
-     *Establece la diferencia (Resta) entre la última venta y su anterior en la última venta
+     *Establece la diferencia (Resta) entre la última venta y su anterior en la última venta.
      */
     private void setDiferencia(){
         //Obtiene la diferencia entre la última venta, con la penúltima venta
@@ -107,7 +111,7 @@ public class pronosticoVentasModel {
     }
     
     /**
-     * Establece la varianza entre la última venta y su anterior en la última venta 
+     * Establece la varianza entre la última venta y su anterior en la última venta .
      */
     private void setVariacion(){
         //Obtiene "diferencia" del útlimo elemento de "historicoVentas"
