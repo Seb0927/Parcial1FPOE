@@ -6,6 +6,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,10 +22,42 @@ import javax.swing.border.Border;
  * @author Sebastián Idrobo Avirama <idrobo.sebastian@correounivalle.edu.co>
  */
 public class PronosticoVentasView extends JFrame{
-    /*
-    Inicializamos los atributos de la clase
-    */
     
+    //Métodos propios
+    public JTextField getTxtVenta() {
+        return txtVenta;
+    }
+
+    public void setTxtVenta(JTextField txtVenta) {
+        this.txtVenta = txtVenta;
+    }
+
+    public JTextField getTxtCantidad() {
+        return txtCantidad;
+    }
+
+    public void setTxtCantidad(JTextField txtCantidad) {
+        this.txtCantidad = txtCantidad;
+    }
+    
+    public void addBtnAgregarListener(ActionListener listenControles){
+        btnAgregar.addActionListener(listenControles);
+    }
+    
+    //Borrar, modificar, nuevo
+    public void addBtnBorrarListener(ActionListener listenControles){
+        btnBorrar.addActionListener(listenControles);
+    }
+    
+    public void addModificarListener(ActionListener listenControles){
+        btnModificar.addActionListener(listenControles);
+    }
+    
+    public void addBtnNuevoListener(ActionListener listenControles){
+        btnNuevo.addActionListener(listenControles);
+    }
+    
+    //Atributos de la ventana -------------------------------->
     //Ancho y alto de ventana
     private int anchoV = 600;
     private int largoV = 800;
