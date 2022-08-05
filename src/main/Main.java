@@ -4,6 +4,8 @@
  */
 package main;
 
+import controlador.PronosticosVentasController;
+import modelo.PronosticoVentasModel;
 import view.PronosticoVentasView;
 
 /**
@@ -17,6 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         PronosticoVentasView v = new PronosticoVentasView();
+        PronosticoVentasModel m = new PronosticoVentasModel();
+        PronosticosVentasController c = new PronosticosVentasController(v,m);
     }
     
 }

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,20 +25,20 @@ import javax.swing.border.Border;
 public class PronosticoVentasView extends JFrame{
     
     //Métodos propios
-    public JTextField getTxtVenta() {
-        return txtVenta;
+    public double getVenta(){
+        return Double.parseDouble(txtVenta.getText());
     }
-
-    public void setTxtVenta(JTextField txtVenta) {
-        this.txtVenta = txtVenta;
+    
+    public double getCantidad(){
+        return Double.parseDouble(txtVenta.getText());
     }
-
-    public JTextField getTxtCantidad() {
-        return txtCantidad;
+    
+    public void addTblHistorico(Object[] fila){
+        tableModelVentas.addRow(fila);
     }
-
-    public void setTxtCantidad(JTextField txtCantidad) {
-        this.txtCantidad = txtCantidad;
+    
+    public void addTblPronostico(String[] fila){
+        tableModelPronostico.addRow(fila);
     }
     
     public void addBtnAgregarListener(ActionListener listenControles){
@@ -49,7 +50,7 @@ public class PronosticoVentasView extends JFrame{
         btnBorrar.addActionListener(listenControles);
     }
     
-    public void addModificarListener(ActionListener listenControles){
+    public void addBtnModificarListener(ActionListener listenControles){
         btnModificar.addActionListener(listenControles);
     }
     
@@ -92,8 +93,11 @@ public class PronosticoVentasView extends JFrame{
     private JScrollPane pnlSVentas;
     private JScrollPane pnlSPronostico;
     
-    ////Border
-    private Border border;
+    //ModeloTablas
+    DefaultTableModel tableModelVentas;
+    DefaultTableModel tableModelPronostico;
+    String col1[] = {"Año (x)", "Cantidad de Ventas (Y)", "Yn-Yn-1","Yn-Yn-1/Yn-1"};
+    String col2[] = {"Año", "Pronóstico Ventas"};
     
     public PronosticoVentasView(){
         iniciarComponentes();
@@ -160,18 +164,16 @@ public class PronosticoVentasView extends JFrame{
         pnlControles.add(btnNuevo);
         
         //pnlVentas
-        String [] columnNames = {"Año (X)", "Cantidad de Ventas (Y)", "Yn - Yn-1", "(Yn - Yn-1)/Yn-1" };
-        Object[][] data = {{"","","",""}};
-        tblHistorico = new JTable(data,columnNames);
+        tableModelVentas = new DefaultTableModel(col1, 0);
+        tblHistorico = new JTable(tableModelVentas);
         pnlSVentas = new JScrollPane();
         tblHistorico.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         pnlSVentas.setViewportView(tblHistorico);
         pnlVentas.add(pnlSVentas);
         
         //pnlPronostico
-        String [] columnNames2 = {"Año", "Pronóstico Ventas"};
-        Object [][] data2 = {{"",""}};
-        tblPronostico = new JTable(data2, columnNames2);
+        tableModelPronostico = new DefaultTableModel(col2, 0);
+        tblPronostico = new JTable(tableModelPronostico);
         pnlSPronostico = new JScrollPane();
         tblPronostico.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         pnlSPronostico = new JScrollPane();
