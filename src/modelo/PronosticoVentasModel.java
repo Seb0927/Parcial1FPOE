@@ -13,8 +13,7 @@ import java.util.ArrayList;
 public class PronosticoVentasModel {
     ArrayList<Venta> historicoVentas;
     ArrayList<Venta> pronosticoVentas;
-    int aniosPronosticados;
-    int promedioVariacion;//
+    double promedioVariacion;//
     
     //Constructores
     public PronosticoVentasModel() {
@@ -90,28 +89,38 @@ public class PronosticoVentasModel {
     public void nuevoPronostico(){
         historicoVentas.removeAll(historicoVentas);
         pronosticoVentas.removeAll(pronosticoVentas);
-        aniosPronosticados = 0;
+        //aniosPronosticados = 0;
         promedioVariacion = 0;
     }
     
     /**
      * Calcula "pronosticoVentas" y añade las respectivas ventas[Solo con año y venta]
      * a si misma.
+     * @param aniosPronosticados
      */
-    public void calcularPronosticoVentas(){
+    public void calcularPronosticoVentas(int aniosPronosticados){
         //Realizamos el pronostico de ventas en baso a los años pronosticados
         for (int i = 1; i <= aniosPronosticados; i++){
             //Si "pronosticoVentas" se encuentra vacío, hacer el primer pronóstico
             //del año en base del último item de "historicoVentas".
             //Sino, hacerlo en base al último item de "pronosticoVentas"
             if (pronosticoVentas.isEmpty()){
+                System.out.println("Entre aquí");
                 double prVenta = historicoVentas.get(historicoVentas.size() - 1).getVentas();
-                prVenta += promedioVariacion*prVenta;
+                System.out.println("prVenta1: " + prVenta);
+                double valorAdd = promedioVariacion*prVenta;
+                System.out.println("valorAdd " + valorAdd);
+                prVenta = prVenta + valorAdd;
+                System.out.println("prVenta2: " + prVenta);
                 Venta v = new Venta(i+aniosPronosticados, prVenta);
                 pronosticoVentas.add(v);
             } else {
                 double prVenta = pronosticoVentas.get(pronosticoVentas.size() - 1).getVentas();
-                prVenta += promedioVariacion*prVenta;
+                System.out.println("prVenta1: " + prVenta);
+                double valorAdd = promedioVariacion*prVenta;
+                System.out.println("valorAdd " + valorAdd);
+                prVenta = prVenta + valorAdd;
+                System.out.println("prVenta2: " + prVenta);
                 Venta v = new Venta(i+aniosPronosticados, prVenta);
                 pronosticoVentas.add(v);
             }
@@ -121,6 +130,10 @@ public class PronosticoVentasModel {
     
     public Venta getVenta(int indice){
         return historicoVentas.get(indice);
+    }
+    
+    public Venta getPronostico(int indice){
+        return pronosticoVentas.get(indice);
     }
     
     public Venta getLastVenta(){
@@ -149,6 +162,18 @@ public class PronosticoVentasModel {
         historicoVentas.get(historicoVentas.size() - 1).setVariacion(variacion);
     }
     
+    public void calcularVariacion(){
+        double sumVar = 0;
+        double cont = -1;
+        for (int i = 0; i < historicoVentas.size(); i++){
+            cont++;
+            sumVar += historicoVentas.get(i).getVariacion();
+        }
+        promedioVariacion = sumVar/cont;
+        System.out.println(promedioVariacion);
+        
+    }
+    
     
     //Getter's & Setter's
     public ArrayList<Venta> getHistoricoVentas() {
@@ -167,19 +192,11 @@ public class PronosticoVentasModel {
         this.pronosticoVentas = pronosticoVentas;
     }
 
-    public int getAniosPronosticados() {
-        return aniosPronosticados;
-    }
-
-    public void setAniosPronosticados(int aniosPronosticados) {
-        this.aniosPronosticados = aniosPronosticados;
-    }
-
-    public int getPromedioVariacion() {
+    public double getPromedioVariacion() {
         return promedioVariacion;
     }
 
-    public void setPromedioVariacion(int promedioVariacion) {
+    public void setPromedioVariacion(double promedioVariacion) {
         this.promedioVariacion = promedioVariacion;
     }
     

@@ -30,18 +30,18 @@ public class PronosticoVentasView extends JFrame{
     }
     
     public double getCantidad(){
-        return Double.parseDouble(txtVenta.getText());
+        return Double.parseDouble(txtCantidad.getText());
     }
     
     public int getSelectedRow(){
         return tblHistorico.getSelectedRow();
     }
     
-    public void removeRow(int indice){
+    public void removeRowVentas(int indice){
         tableModelVentas.removeRow(indice);
     }
     
-    public void removeAllRows(){
+    public void removeAllRowsVentas(){
         tableModelVentas.setRowCount(0);
     }
     
@@ -49,7 +49,7 @@ public class PronosticoVentasView extends JFrame{
         tableModelVentas.addRow(fila);
     }
     
-    public void addTblPronostico(String[] fila){
+    public void addTblPronostico(Object[] fila){
         tableModelPronostico.addRow(fila);
     }
     
@@ -70,6 +70,10 @@ public class PronosticoVentasView extends JFrame{
         btnNuevo.addActionListener(listenControles);
     }
     
+    public void addBtnPronosticoListener(ActionListener listenControles){
+        btnPronostico.addActionListener(listenControles);
+    }
+    
     //Atributos de la ventana -------------------------------->
     //Ancho y alto de ventana
     private int anchoV = 600;
@@ -80,6 +84,7 @@ public class PronosticoVentasView extends JFrame{
     private JButton btnBorrar;
     private JButton btnModificar;
     private JButton btnNuevo;
+    private JButton btnPronostico;
     
     //JTables
     private JTable tblHistorico;
@@ -136,7 +141,7 @@ public class PronosticoVentasView extends JFrame{
         pnlDatosVenta.setBounds(10,10,290,100);
         
         pnlControles = new JPanel();
-        pnlControles.setLayout(new GridLayout(4,1));
+        pnlControles.setLayout(new GridLayout(5,1));
         pnlControles.setBorder(BorderFactory.createTitledBorder("Controles"));
         pnlControles.setBounds(300,10,280,200);
         
@@ -170,10 +175,12 @@ public class PronosticoVentasView extends JFrame{
         btnBorrar = new JButton("Borrar año");
         btnModificar = new JButton("Modifica año");
         btnNuevo = new JButton("Nuevo Pronóstico");
+        btnPronostico = new JButton("Realizar Pronóstico");
         pnlControles.add(btnAgregar);
         pnlControles.add(btnBorrar);
         pnlControles.add(btnModificar);
         pnlControles.add(btnNuevo);
+        pnlControles.add(btnPronostico);
         
         //pnlVentas
         tableModelVentas = new DefaultTableModel(col1, 0);

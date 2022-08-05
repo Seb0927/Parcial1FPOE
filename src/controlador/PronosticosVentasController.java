@@ -29,6 +29,7 @@ public class PronosticosVentasController {
         this.vista.addBtnBorrarListener(new CalculateListener());
         this.vista.addBtnModificarListener(new CalculateListener());
         this.vista.addBtnNuevoListener(new CalculateListener());
+        this.vista.addBtnPronosticoListener(new CalculateListener());
     }
     
     class CalculateListener implements ActionListener {
@@ -49,7 +50,7 @@ public class PronosticosVentasController {
             if (e.getActionCommand().equalsIgnoreCase("Borrar año")){
                 int indice = vista.getSelectedRow();
                 modelo.eliminarVenta(indice);
-                vista.removeAllRows();
+                vista.removeAllRowsVentas();
                 for (int i = 0; i < modelo.getHistoricoVentas().size(); i++){
                     String venta = Double.toString(modelo.getVenta(i).getVentas());
                     String anio = String.valueOf(modelo.getVenta(i).getAnio());
@@ -60,6 +61,21 @@ public class PronosticosVentasController {
                 }
                 
             }
+            
+            if (e.getActionCommand().equalsIgnoreCase("Realizar pronóstico")){
+                modelo.calcularVariacion();
+                int anios = (int) vista.getCantidad();
+                modelo.calcularPronosticoVentas(anios);
+                for (int i = 0; i < modelo.getPronosticoVentas().size(); i++){
+                    System.out.println("size: " + modelo.getPronosticoVentas().size());
+                    String anio = String.valueOf(modelo.getPronostico(i).getAnio());
+                    String venta = Double.toString(modelo.getPronostico(i).getVentas());
+                    Object[] fila = {anio, venta};
+                    vista.addTblPronostico(fila);
+                }
+            }
+            
+            
             
         }
 
