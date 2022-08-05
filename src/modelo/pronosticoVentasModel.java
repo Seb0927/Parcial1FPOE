@@ -10,15 +10,16 @@ import java.util.ArrayList;
  *
  * @author Sebastián Idrobo Avirama <idrobo.sebastian@correounivalle.edu.co>
  */
-public class pronosticoVentasModel {
+public class PronosticoVentasModel {
     ArrayList<Venta> historicoVentas;
     ArrayList<Venta> pronosticoVentas;
     int aniosPronosticados;
-    int promedioVariacion;
+    int promedioVariacion;//
     
     //Constructores
-    public pronosticoVentasModel() {
-        
+    public PronosticoVentasModel() {
+        historicoVentas = new ArrayList<>();
+        pronosticoVentas = new ArrayList<>();
     }
     
     //Métodos propios (PUBLICOS)
@@ -49,9 +50,28 @@ public class pronosticoVentasModel {
      * Elimina una determinada venta
      * @param indice indice del elemento "venta" a eliminar de "historialVentas"
      */
-    public void eliminarVenta(double indice){
+    public void eliminarVenta(int indice){
         //Elimina la venta indicada
+        System.out.println("Indice: " + indice);
+        System.out.println("Historico ventas size + " + historicoVentas.size());
         historicoVentas.remove(indice);
+        System.out.println("Historico ventas size + " + historicoVentas.size());
+        ArrayList<Venta> tempVentas = new ArrayList<>(historicoVentas);
+        historicoVentas.removeAll(historicoVentas);
+        for (int i = 0; i<tempVentas.size(); i++){
+            if (i == 0){
+                System.out.println("Entre aquí con: " + i);
+                System.out.println("Con ventas: " + tempVentas.get(i).getVentas());
+                Venta v = new Venta(i, tempVentas.get(i).getVentas());
+                historicoVentas.add(v);
+            } else {
+                System.out.println("Entre aquí con: " + i);
+                Venta v = new Venta(i, tempVentas.get(i).getVentas());
+                historicoVentas.add(v);
+                setDiferencia();
+                setVariacion();
+            }
+        }
     }
     
     /**
@@ -97,6 +117,14 @@ public class pronosticoVentasModel {
             }
              
         }
+    }
+    
+    public Venta getVenta(int indice){
+        return historicoVentas.get(indice);
+    }
+    
+    public Venta getLastVenta(){
+        return historicoVentas.get(historicoVentas.size() - 1);
     }
     
     //Métodos propios (PRIVADOS)
