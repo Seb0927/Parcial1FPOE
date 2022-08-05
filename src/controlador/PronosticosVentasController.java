@@ -6,6 +6,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import modelo.PronosticoVentasModel;
 import view.PronosticoVentasView;
 
@@ -75,6 +76,16 @@ public class PronosticosVentasController {
                 }
             }
             
+            if (e.getActionCommand().equalsIgnoreCase("Modifica año")){
+                JOptionPane.showMessageDialog(null,"Profe, no me alcanzó el tiempo :c");
+            }
+            
+            if (e.getActionCommand().equalsIgnoreCase("Nuevo Pronóstico")){
+                vista.removeAllRowsVentas();
+                vista.removeAllRowsPronosticos();
+                modelo.nuevoPronostico();
+                
+            }
             
             
         }

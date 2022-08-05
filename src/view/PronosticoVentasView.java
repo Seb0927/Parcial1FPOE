@@ -45,6 +45,10 @@ public class PronosticoVentasView extends JFrame{
         tableModelVentas.setRowCount(0);
     }
     
+    public void removeAllRowsPronosticos(){
+        tableModelPronostico.setRowCount(0);
+    }
+    
     public void addTblHistorico(Object[] fila){
         tableModelVentas.addRow(fila);
     }
