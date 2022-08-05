@@ -9,5 +9,7 @@ package controlador;
  * @author Sebastián Idrobo Avirama <idrobo.sebastian@correounivalle.edu.co>
  */
 public class PronosticosVentasController {
+    private PronosticoVentasView vista;
+    private PronosticoVentas
     
 }
