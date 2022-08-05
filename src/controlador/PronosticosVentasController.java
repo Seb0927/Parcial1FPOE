@@ -39,15 +39,25 @@ public class PronosticosVentasController {
                 double ventaView = vista.getVenta();
                 modelo.agregarVenta(ventaView);
                 String venta = Double.toString(modelo.getLastVenta().getVentas());
-                System.out.println(venta);
                 String anio = String.valueOf(modelo.getLastVenta().getAnio());
-                System.out.println(anio);
                 String diferencia = String.valueOf(modelo.getLastVenta().getDiferencia());
-                System.out.println(diferencia);
                 String variacion = String.valueOf(modelo.getLastVenta().getVariacion());
-                System.out.println(variacion);
                 Object[] fila = {anio, venta, diferencia, variacion};
                 vista.addTblHistorico(fila);
+            }
+            
+            if (e.getActionCommand().equalsIgnoreCase("Borrar año")){
+                int indice = vista.getSelectedRow();
+                modelo.eliminarVenta(indice);
+                vista.removeAllRows();
+                for (int i = 0; i < modelo.getHistoricoVentas().size(); i++){
+                    String venta = Double.toString(modelo.getVenta(i).getVentas());
+                    String anio = String.valueOf(modelo.getVenta(i).getAnio());
+                    String diferencia = String.valueOf(modelo.getVenta(i).getDiferencia());
+                    String variacion = String.valueOf(modelo.getVenta(i).getVariacion());
+                    Object[] fila = {anio, venta, diferencia, variacion};
+                    vista.addTblHistorico(fila);
+                }
                 
             }
             

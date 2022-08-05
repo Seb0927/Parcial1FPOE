@@ -33,6 +33,18 @@ public class PronosticoVentasView extends JFrame{
         return Double.parseDouble(txtVenta.getText());
     }
     
+    public int getSelectedRow(){
+        return tblHistorico.getSelectedRow();
+    }
+    
+    public void removeRow(int indice){
+        tableModelVentas.removeRow(indice);
+    }
+    
+    public void removeAllRows(){
+        tableModelVentas.setRowCount(0);
+    }
+    
     public void addTblHistorico(Object[] fila){
         tableModelVentas.addRow(fila);
     }
@@ -166,6 +178,7 @@ public class PronosticoVentasView extends JFrame{
         //pnlVentas
         tableModelVentas = new DefaultTableModel(col1, 0);
         tblHistorico = new JTable(tableModelVentas);
+        tblHistorico.setDefaultEditor(Object.class, null);
         pnlSVentas = new JScrollPane();
         tblHistorico.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         pnlSVentas.setViewportView(tblHistorico);
@@ -174,6 +187,7 @@ public class PronosticoVentasView extends JFrame{
         //pnlPronostico
         tableModelPronostico = new DefaultTableModel(col2, 0);
         tblPronostico = new JTable(tableModelPronostico);
+        tblPronostico.setDefaultEditor(Object.class, null);
         pnlSPronostico = new JScrollPane();
         tblPronostico.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         pnlSPronostico = new JScrollPane();
